@@ -6,7 +6,9 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.unitelecuidado.api_rest.dto.UsuarioAtualizar;
 import org.unitelecuidado.api_rest.dto.UsuarioCadastro;
+import org.unitelecuidado.api_rest.dto.UsuarioCargo;
 
 @Table(name = "usuarios")
 @Entity(name = "Usuario")
@@ -36,7 +38,20 @@ public class Usuario {
         this.ativo = dados.ativo();
     }
 
-
+    public void atualizarDados(UsuarioAtualizar dados){
+        if(dados.nome() != null){
+            this.nome = dados.nome();
+        }
+        if (dados.email() != null){
+            this.email = dados.email();
+        }
+        if(dados.senha() != null){
+            this.senha = dados.senha();
+        }
+        if(dados.cargo() != null){
+            this.cargo = dados.cargo();
+        }
+    }
 
 
 }

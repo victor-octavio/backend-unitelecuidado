@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.unitelecuidado.api_rest.domain.usuario.Usuario;
+import org.unitelecuidado.api_rest.dto.UsuarioAtualizar;
 import org.unitelecuidado.api_rest.dto.UsuarioCadastro;
 import org.unitelecuidado.api_rest.repository.UsuarioRepository;
 
@@ -30,8 +31,9 @@ public class UsuarioController {
     }
     @PutMapping
     @Transactional
-    public void atualizaUsuario(){
-
+    public void atualizaUsuario(@RequestBody @Valid UsuarioAtualizar dados){
+        var usuario = repository.getReferenceById(dados.id());
+        usuario.atualizarDados(dados);
     }
 
 }

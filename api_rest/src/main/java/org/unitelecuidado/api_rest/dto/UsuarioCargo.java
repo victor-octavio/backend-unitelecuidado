@@ -1,4 +1,4 @@
-package org.unitelecuidado.api_rest.domain.usuario;
+package org.unitelecuidado.api_rest.dto;
 
 public enum UsuarioCargo {
     MONITOR,
