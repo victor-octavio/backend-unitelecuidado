@@ -21,19 +21,26 @@ public class UsuarioController {
 
     @PostMapping
     @Transactional
-    public void cadastraUsuario(@RequestBody @Valid UsuarioCadastro dados){
+    public void cadastrar(@RequestBody @Valid UsuarioCadastro dados){
         repository.save(new Usuario(dados));
     }
 
     @GetMapping
-    public List<Usuario> listaUsuario(){
+    public List<Usuario> listar(){
         return repository.findAll();
     }
     @PutMapping
     @Transactional
-    public void atualizaUsuario(@RequestBody @Valid UsuarioAtualizar dados){
+    public void atualizar(@RequestBody @Valid UsuarioAtualizar dados){
         var usuario = repository.getReferenceById(dados.id());
         usuario.atualizarDados(dados);
     }
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void excluir(@PathVariable Long id){
+        var usuario = repository.getReferenceById(id);
+        usuario.excluir();
+    }
+
 
 }
